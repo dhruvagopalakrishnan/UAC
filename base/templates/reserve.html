@@ -1,0 +1,392 @@
+{% load static %}{% load humanize %}{% load customfilter %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Bookings Page</title>
+    
+    <script src="{% static 'assets/default/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/select2/dist/js/select2.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/default/js/script.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="shortcut icon" href="{% static 'uac/images/logo1.png' %}" type="image/x-icon">
+    <link rel="stylesheet" type = 'text/css' href="{% static 'uac/styles/reserve.css' %}" />
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+
+        <h1 class="display-4">Booking Confirmation</h1>
+        <br>
+        <br>
+        <h3><b>Flight - {{flight.code}}</b></h3>
+        <h3>From:<b>{{flight.from_Spaceport.name}}</b></h3>
+        <h3>To:<b>{{flight.to_Spaceport.name}}</b></dd></h3>
+        <h3>Spaceship:<b>{{flight.airline.name}}</b></h3>
+        <p class="lead">Please enter your personal details to confirm your booking for the shuttle</p>
+        <form action="{% url 'success' %}" id="reserve">
+          <input type="hidden" name="flight" value="{{flight.id}}">
+          <div class="form-group">
+            <label for="first_name" class="control-label">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name"><br>
+          </div>
+          <div class="form-group">
+            <label for="middle_name" >Middle Name</label>
+            <input type="text" class="form-control" id="middle_name" name="middle_name" placeholder="Middle Name"><br>
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name"><br>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label><br>
+            <select class="form-control" id="gender" name="gender"><br>
+              <option>Male</option><br>
+              <option>Female</option><br>
+            </select>
+          </div>
+          <div><br></div>
+          <div class="form-group">
+            <label for="contact">Contact</label>
+            <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact Number" required><br>
+            <div class="invalid-feedback">
+              Please provide a valid contact.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">Bill will be sent to the same Email ID entered</small>
+          </div>
+          <div><br></div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+          </div>
+          <div><br></div>
+          <div class="form-group">
+            <label for="type" class="control-label">Seat Type</label>
+          </div>
+          <div class="form-group">
+            <select class="form-control" name="type" id="type"  required ><br>
+              <option value="1">First Class</option><br>
+              <option value="2">Economy Class</option><br>
+            </select>
+          </div>
+          <div><br></div>
+          
+          
+          <div class="text-center mb-3">
+            <button  type = 'submit' class="btn btn-dark bg-gradient-dark btn-lg rounded-pill w-100">Submit Booking</button>
+          </div>
+        </form>
+        </div>
+        
+      </div>
+
+    </div>
+
+
+
+    
+
+
+    <script>
+      $(function() {
+          if ($('.redirect-msg').length > 0) {
+              setTimeout(() => {
+                  $('.redirect-msg').hide('slideUp')
+                  setTimeout(() => {
+                      $('.redirect-msg').remove()
+                  }, 500)
+              }, 3500)
+          }
+
+      })
+  </script>
+
+        <script>
+          const loader = $('<div>')
+          loader.attr('id', 'pre-loader')
+          loader.html('<div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>')
+  
+          window.start_loader = function() {
+              $('body').removeClass('loading')
+              if ($('#pre-loader').length > 0)
+                  $('#pre-loader').remove();
+              $('body').append(loader)
+              $('body').addClass('loading')
+          }
+          window.end_loader = function() {
+              if ($('#pre-loader').length > 0)
+                  $('#pre-loader').remove();
+              $('body').removeClass('loading')
+          }
+          window.uni_modal = function($title = '', $url = '', $size = "") {
+              start_loader()
+              $.ajax({
+                  url: $url,
+                  error: err => {
+                      console.log()
+                      alert("An error occured")
+                  },
+                  success: function(resp) {
+                      if (resp) {
+                          $('#uni_modal .modal-title').html($title)
+                          $('#uni_modal .modal-body').html(resp)
+                          if ($size != '') {
+                              $('#uni_modal .modal-dialog').addClass($size + '  modal-dialog-centered')
+                          } else {
+                              $('#uni_modal .modal-dialog').removeAttr("class").addClass("modal-dialog modal-md modal-dialog-centered")
+                          }
+                          $('#uni_modal').modal({
+                              backdrop: 'static',
+                              keyboard: false,
+                              focus: true
+                          })
+                          $('#uni_modal').modal('show')
+                          end_loader()
+                      }
+                  }
+              })
+          }
+          window._conf = function($msg = '', $func = '', $params = []) {
+              $('#confirm_modal #confirm').attr('onclick', $func + "(" + $params.join(',') + ")")
+              $('#confirm_modal .modal-body').html($msg)
+              $('#confirm_modal').modal('show')
+          }
+  
+          $(function() {
+              $('#viewer_modal').on('shown.modal.bs', function() {
+                  $('#zoom-value').val(100)
+                  $('#img-viewer img').css(
+                      'transform',
+                      'scale(1)'
+                  )
+  
+              })
+              $('#zoom-plus').click(function() {
+                  var scale = parseFloat($('#zoom-value').val())
+                  if (scale >= 200) return false;
+                  scale += 10
+                  $('#zoom-value').val(scale)
+                  scale = scale / 100
+                  $('#img-viewer img').css(
+                      'transform',
+                      'scale(' + (scale) + ')'
+                  )
+              })
+              $('#zoom-minus').click(function() {
+                  var scale = parseFloat($('#zoom-value').val())
+                  if (scale <= 0) return false;
+                  scale -= 10
+                  $('#zoom-value').val(scale)
+                  scale = scale / 100
+                  $('#img-viewer img').css(
+                      'transform',
+                      'scale(' + (scale) + ')'
+                  )
+              })
+  
+          })
+      </script>
+
+        <script>
+          $(function() {
+              $('.select2').select2({
+                  placeholder: "Please Select Here",
+                  width: "100%",
+                  containerCssClass: 'form-control form-control-sm rounded-0'
+              })
+              $('#reserve').submit(function(e) {
+                  e.preventDefault();
+                  var _this = $(this)
+                  $('.err-msg').remove();
+                  var el = $('<div>')
+                  el.addClass("alert alert-danger err-msg")
+                  el.hide()
+                  if (_this[0].checkValidity() == false) {
+                      _this[0].reportValidity();
+                      return false;
+                  }
+                  start_loader();
+                  $.ajax({
+                      headers: {
+                          "X-CSRFToken": '{{csrf_token}}'
+                      },
+                      url: "{% url 'save-Bookings' %}",
+                      data: new FormData($(this)[0]),
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      method: 'POST',
+                      type: 'POST',
+                      dataType: 'json',
+                      
+                      error: err => {
+                        console.log(err)
+                        alert("An error occccured", 'error');
+                        end_loader();
+                      },
+                      success: function(resp) {
+                          if (typeof resp == 'object' && resp.status == 'success') {
+                            window.location = "/payment_success";
+                          } else if (resp.status == 'failed' && !!resp.msg) {
+                              el.html(resp.msg)
+                          } else {
+                              el.text("An error occured", 'error');
+                              end_loader();
+                              console.err(resp)
+                          }
+                          _this.prepend(el)
+                          el.show('slow')
+                          $("html, body, .modal").scrollTop(0);
+                          end_loader()
+                      }
+                  })
+              })
+          })
+      </script>
+
+
+    <!-- Navbar section  -->
+    <nav class="navbar">
+        <ul class="navbar-nav">
+          <li class="logo">
+            <a href="#" class="nav-link">
+              <span class="link-text logo-text"><img src="{% static 'uac/images/lol.png' %}" alt=""> </span>
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fad"
+                data-icon="angle-double-right"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+                class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
+              >
+                <g class="fa-group">
+                  <path
+                    fill="currentColor"
+                    d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
+                    class="fa-secondary"
+                  ></path>
+                  <path
+                    fill="currentColor"
+                    d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
+                    class="fa-primary"
+                  ></path>
+                </g>
+              </svg>
+    
+    
+            </a>
+          </li>
+    
+          <li class="nav-item">
+            <a href="/" class="nav-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M511.8 287.6L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L416 100.7V64C416 46.33 430.3 32 448 32H480C497.7 32 512 46.33 512 64V185L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6L511.8 287.6z"
+                fill = "currentColor"
+                class="fa-primary"
+    
+                />
+              </svg>
+              <span class="link-text">Home</span>
+            </a>
+          </li>
+    
+          <li class="nav-item">
+            <a href="{% url 'about' %}" class="nav-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M512 32H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h448c35.35 0 64-28.65 64-64V96C576 60.65 547.3 32 512 32zM176 128c35.35 0 64 28.65 64 64s-28.65 64-64 64s-64-28.65-64-64S140.7 128 176 128zM272 384h-192C71.16 384 64 376.8 64 368C64 323.8 99.82 288 144 288h64c44.18 0 80 35.82 80 80C288 376.8 280.8 384 272 384zM496 320h-128C359.2 320 352 312.8 352 304S359.2 288 368 288h128C504.8 288 512 295.2 512 304S504.8 320 496 320zM496 256h-128C359.2 256 352 248.8 352 240S359.2 224 368 224h128C504.8 224 512 231.2 512 240S504.8 256 496 256zM496 192h-128C359.2 192 352 184.8 352 176S359.2 160 368 160h128C504.8 160 512 167.2 512 176S504.8 192 496 192z"
+                fill ="currentColor"
+                class="fa-primary"
+    
+                /></svg>
+              <span class="link-text">About</span>
+            </a>
+          </li>
+    
+          <li class="nav-item">
+            <a href="{% url 'more' %}" class="nav-link">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fad"
+                data-icon="space-station-moon-alt"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                class="svg-inline--fa fa-space-station-moon-alt fa-w-16 fa-5x"
+              >
+                <g class="fa-group">
+                  <path
+                    fill="currentColor"
+                    d="M501.70312,224H448V160H368V96h48V66.67383A246.86934,246.86934,0,0,0,256,8C119.03125,8,8,119.0332,8,256a250.017,250.017,0,0,0,1.72656,28.26562C81.19531,306.76953,165.47656,320,256,320s174.80469-13.23047,246.27344-35.73438A250.017,250.017,0,0,0,504,256,248.44936,248.44936,0,0,0,501.70312,224ZM192,240a80,80,0,1,1,80-80A80.00021,80.00021,0,0,1,192,240ZM384,343.13867A940.33806,940.33806,0,0,1,256,352c-87.34375,0-168.71094-11.46094-239.28906-31.73633C45.05859,426.01953,141.29688,504,256,504a247.45808,247.45808,0,0,0,192-91.0918V384H384Z"
+                    class="fa-secondary"
+                  ></path>
+                  <path
+                    fill="currentColor"
+                    d="M256,320c-90.52344,0-174.80469-13.23047-246.27344-35.73438a246.11376,246.11376,0,0,0,6.98438,35.998C87.28906,340.53906,168.65625,352,256,352s168.71094-11.46094,239.28906-31.73633a246.11376,246.11376,0,0,0,6.98438-35.998C430.80469,306.76953,346.52344,320,256,320Zm-64-80a80,80,0,1,0-80-80A80.00021,80.00021,0,0,0,192,240Zm0-104a24,24,0,1,1-24,24A23.99993,23.99993,0,0,1,192,136Z"
+                    class="fa-primary"
+                  ></path>
+                </g>
+              </svg>
+              <span class="link-text">More</span>
+            </a>
+          </li>
+    
+          <li class="nav-item">
+            <a href= "/tickets" class="nav-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M128 160H448V352H128V160zM512 64C547.3 64 576 92.65 576 128V208C549.5 208 528 229.5 528 256C528 282.5 549.5 304 576 304V384C576 419.3 547.3 448 512 448H64C28.65 448 0 419.3 0 384V304C26.51 304 48 282.5 48 256C48 229.5 26.51 208 0 208V128C0 92.65 28.65 64 64 64H512zM96 352C96 369.7 110.3 384 128 384H448C465.7 384 480 369.7 480 352V160C480 142.3 465.7 128 448 128H128C110.3 128 96 142.3 96 160V352z"
+                fill = "currentColor"
+                class = "fa-primary"
+    
+                /></svg>
+              <span class="link-text">Tickets</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'goods' %}"  class="nav-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M272 192V320H304C311 320 317.7 321.5 323.7 324.2L443.8 192H415.5C415.8 186.7 416 181.4 416 176C416 112.1 393.8 54.84 358.9 16.69C450 49.27 493.4 122.6 507.8 173.6C510.5 183.1 502.1 192 493.1 192H487.1L346.8 346.3C350.1 352.8 352 360.2 352 368V464C352 490.5 330.5 512 304 512H207.1C181.5 512 159.1 490.5 159.1 464V368C159.1 360.2 161.9 352.8 165.2 346.3L24.92 192H18.89C9 192 1.483 183.1 4.181 173.6C18.64 122.6 61.97 49.27 153.1 16.69C118.2 54.84 96 112.1 96 176C96 181.4 96.16 186.7 96.47 192H68.17L188.3 324.2C194.3 321.5 200.1 320 207.1 320H239.1V192H128.5C128.2 186.7 127.1 181.4 127.1 176C127.1 125 143.9 80.01 168.2 48.43C192.5 16.89 223.8 0 255.1 0C288.2 0 319.5 16.89 343.8 48.43C368.1 80.01 384 125 384 176C384 181.4 383.8 186.7 383.5 192H272z"
+                fill = "currentColor"
+                class = "fa-primary"
+    
+    
+                />
+    
+              </svg>
+              <span class="link-text">Goods</span>
+    
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'ships' %}"class="nav-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M130 480c40.6 0 80.4-11 115.2-31.9L352 384l-224 0 0 96h2zM352 128L245.2 63.9C210.4 43 170.6 32 130 32h-2v96l224 0zM96 128l0-96H80C53.5 32 32 53.5 32 80v48h8c-22.1 0-40 17.9-40 40v16V328v16c0 22.1 17.9 40 40 40H32v48c0 26.5 21.5 48 48 48H96l0-96h8c26.2 0 49.4-12.6 64-32H456c69.3 0 135-22.7 179.2-81.6c6.4-8.5 6.4-20.3 0-28.8C591 182.7 525.3 160 456 160H168c-14.6-19.4-37.8-32-64-32l-8 0zM512 243.6v24.9c0 19.6-15.9 35.6-35.6 35.6c-2.5 0-4.4-2-4.4-4.4V212.4c0-2.5 2-4.4 4.4-4.4c19.6 0 35.6 15.9 35.6 35.6z"            fill = "currentColor"
+                class = "fa-primary" /></svg>
+    
+              <span class="link-text">Ships</span>
+    
+            </a>
+    
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'admin:index' %}" class="nav-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M576 136c0 22.09-17.91 40-40 40c-.248 0-.4551-.1266-.7031-.1305l-50.52 277.9C482 468.9 468.8 480 453.3 480H122.7c-15.46 0-28.72-11.06-31.48-26.27L40.71 175.9C40.46 175.9 40.25 176 39.1 176c-22.09 0-40-17.91-40-40S17.91 96 39.1 96s40 17.91 40 40c0 8.998-3.521 16.89-8.537 23.57l89.63 71.7c15.91 12.73 39.5 7.544 48.61-10.68l57.6-115.2C255.1 98.34 247.1 86.34 247.1 72C247.1 49.91 265.9 32 288 32s39.1 17.91 39.1 40c0 14.34-7.963 26.34-19.3 33.4l57.6 115.2c9.111 18.22 32.71 23.4 48.61 10.68l89.63-71.7C499.5 152.9 496 144.1 496 136C496 113.9 513.9 96 536 96S576 113.9 576 136z"
+                fill = "currentColor"
+                class = "fa-primary"
+                /></svg>
+              <span class="link-text">Admin</span>
+    
+            </a>
+    
+          </li>
+          
+    
+    
+        </ul>
+      </nav>
+    
+  </body>
+</html>

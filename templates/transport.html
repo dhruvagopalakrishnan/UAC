@@ -1,0 +1,81 @@
+{% load static %}{% load humanize %}{% load customfilter %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="shortcut icon" href="{% static 'uac/images/logo1.png' %}" type="image/x-icon">
+    <script src="{% static 'assets/default/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/select2/dist/js/select2.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/default/js/script.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+      <link rel="stylesheet" type = 'text/css' href="{% static 'uac/styles/transport.css' %}" />
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+  
+          <h1 class="display-4">Transport Confirmation</h1>
+          <p class="lead">Please enter your personal details to confirm your booking for the shuttle</p>
+          <form  action  = "" method = "POST" id="LMAODED">
+            {% csrf_token %}
+            <input type="hidden" name="flight" value="{{flight.id}}">
+            <div class="form-group">
+              <label for="first_name" class="control-label">First Name</label>
+              <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name"><br>
+            </div>
+            <div class="form-group">
+            <div class="form-group">
+              <label for="last_name">Last Name</label>
+              <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name"><br>
+            </div>
+
+            <div><br></div>
+            <div class="form-group">
+              <label for="contact">Contact</label>
+              <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact Number" required><br>
+              <div class="invalid-feedback">
+                Please provide a valid contact.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">Bill will be sent to the same Email ID entered</small>
+            </div>
+            <div><br></div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+            </div>
+            <div><br></div>
+            <div><br></div>
+            <div class="form-group">
+                <label for="ship_type">Ship Type</label><br>
+                <select class="form-control" id="ship_type" name="ship_type"><br>
+                  <option value="1">Millenium Falcon</option><br>
+                  <option value="2">Milano</option><br>
+                  <option value="3">Enterprise</option><br>
+                </select>
+              </div>
+              <div><br></div>
+              <div><br></div>
+              <div class="form-group">
+                <label for="weight">Weight Of Cargo</label>
+                <input type="text" class="form-control" id="weight" name="weight" placeholder="Enter Weight In Solar Mass"><br>
+              </div>
+            
+            <div class="text-center mb-3">
+              <button  onclick="sendEmail()"  type = 'submit' class="btn btn-dark bg-gradient-dark btn-lg rounded-pill w-100">Submit Booking</button>
+            </div>
+          </form>
+          </div>
+          
+        </div>
+  
+      </div>
+
+  </body>
+</html>

@@ -1,0 +1,56 @@
+Date : 2022-12-13 19:02:04
+Directory : d:\UAC TRY-1\static\uac
+Total : 27 files,  3738 codes, 90 comments, 307 blanks, all 4135 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| CSS      |         16 |      5,739 |        109 |        839 |      6,687 |
+| HTML     |         11 |     -2,001 |        -19 |       -532 |     -2,552 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                               | files      | code       | comment    | blank      | total      |
++----------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                  |         27 |      3,738 |         90 |        307 |      4,135 |
+| ..                                                 |         11 |     -2,001 |        -19 |       -532 |     -2,552 |
+| ..\..                                              |         11 |     -2,001 |        -19 |       -532 |     -2,552 |
+| ..\..\templates                                    |         11 |     -2,001 |        -19 |       -532 |     -2,552 |
+| styles                                             |         16 |      5,739 |        109 |        839 |      6,687 |
++----------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                           | language | code       | comment    | blank      | total      |
++----------------------------------------------------+----------+------------+------------+------------+------------+
+| d:\UAC TRY-1\static\uac\styles\404.css             | CSS      |         60 |          0 |          5 |         65 |
+| d:\UAC TRY-1\static\uac\styles\about.css           | CSS      |        479 |          4 |         76 |        559 |
+| d:\UAC TRY-1\static\uac\styles\base.css            | CSS      |        174 |          2 |         38 |        214 |
+| d:\UAC TRY-1\static\uac\styles\goods.css           | CSS      |        279 |          2 |         54 |        335 |
+| d:\UAC TRY-1\static\uac\styles\home.css            | CSS      |        635 |          5 |         81 |        721 |
+| d:\UAC TRY-1\static\uac\styles\more.css            | CSS      |        569 |         10 |         73 |        652 |
+| d:\UAC TRY-1\static\uac\styles\payment_success.css | CSS      |        654 |          0 |         19 |        673 |
+| d:\UAC TRY-1\static\uac\styles\reserve.css         | CSS      |        190 |          2 |         42 |        234 |
+| d:\UAC TRY-1\static\uac\styles\result1.css         | CSS      |        699 |         63 |         86 |        848 |
+| d:\UAC TRY-1\static\uac\styles\select.css          | CSS      |        371 |          2 |         71 |        444 |
+| d:\UAC TRY-1\static\uac\styles\ships.css           | CSS      |        486 |          8 |         68 |        562 |
+| d:\UAC TRY-1\static\uac\styles\success.css         | CSS      |        294 |          2 |         63 |        359 |
+| d:\UAC TRY-1\static\uac\styles\test1.css           | CSS      |        257 |          2 |         58 |        317 |
+| d:\UAC TRY-1\static\uac\styles\tickets.css         | CSS      |        252 |          2 |         51 |        305 |
+| d:\UAC TRY-1\static\uac\styles\transport.css       | CSS      |          0 |          0 |          1 |          1 |
+| d:\UAC TRY-1\static\uac\styles\xwing.css           | CSS      |        340 |          5 |         53 |        398 |
+| d:\UAC TRY-1\templates\404.html                    | HTML     |       -116 |          0 |        -10 |       -126 |
+| d:\UAC TRY-1\templates\about.html                  | HTML     |       -244 |          0 |        -73 |       -317 |
+| d:\UAC TRY-1\templates\goods.html                  | HTML     |       -274 |         -1 |        -48 |       -323 |
+| d:\UAC TRY-1\templates\home.html                   | HTML     |       -302 |         -3 |        -89 |       -394 |
+| d:\UAC TRY-1\templates\more.html                   | HTML     |       -268 |         -6 |       -104 |       -378 |
+| d:\UAC TRY-1\templates\payment_success.html        | HTML     |        -52 |          0 |        -19 |        -71 |
+| d:\UAC TRY-1\templates\select.html                 | HTML     |       -204 |          0 |        -46 |       -250 |
+| d:\UAC TRY-1\templates\ships.html                  | HTML     |       -225 |         -5 |        -76 |       -306 |
+| d:\UAC TRY-1\templates\success.html                | HTML     |        -47 |          0 |        -15 |        -62 |
+| d:\UAC TRY-1\templates\transport.html              | HTML     |        -75 |          0 |         -7 |        -82 |
+| d:\UAC TRY-1\templates\xwing.html                  | HTML     |       -194 |         -4 |        -45 |       -243 |
+| Total                                              |          |      3,738 |         90 |        307 |      4,135 |
++----------------------------------------------------+----------+------------+------------+------------+------------+

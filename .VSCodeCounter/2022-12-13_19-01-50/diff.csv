@@ -1,0 +1,18 @@
+"filename", "language", "HTML", "Python", "comment", "blank", "total"
+"d:\UAC TRY-1\templates\404.html", "HTML", 116, 0, 0, 10, 126
+"d:\UAC TRY-1\templates\about.html", "HTML", 244, 0, 0, 73, 317
+"d:\UAC TRY-1\templates\goods.html", "HTML", 274, 0, 1, 48, 323
+"d:\UAC TRY-1\templates\home.html", "HTML", 302, 0, 3, 89, 394
+"d:\UAC TRY-1\templates\more.html", "HTML", 268, 0, 6, 104, 378
+"d:\UAC TRY-1\templates\payment_success.html", "HTML", 52, 0, 0, 19, 71
+"d:\UAC TRY-1\templates\select.html", "HTML", 204, 0, 0, 46, 250
+"d:\UAC TRY-1\templates\ships.html", "HTML", 225, 0, 5, 76, 306
+"d:\UAC TRY-1\templates\success.html", "HTML", 47, 0, 0, 15, 62
+"d:\UAC TRY-1\templates\transport.html", "HTML", 75, 0, 0, 7, 82
+"d:\UAC TRY-1\templates\xwing.html", "HTML", 194, 0, 4, 45, 243
+"d:\UAC TRY-1\uac\__init__.py", "Python", 0, 0, 0, -1, -1
+"d:\UAC TRY-1\uac\asgi.py", "Python", 0, -4, -8, -5, -17
+"d:\UAC TRY-1\uac\settings.py", "Python", 0, -101, -229, -49, -379
+"d:\UAC TRY-1\uac\urls.py", "Python", 0, -12, -15, -6, -33
+"d:\UAC TRY-1\uac\wsgi.py", "Python", 0, -4, -8, -5, -17
+"Total", "-", 2001, -121, -241, 466, 2105

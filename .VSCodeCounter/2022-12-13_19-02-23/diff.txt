@@ -1,0 +1,59 @@
+Date : 2022-12-13 19:02:23
+Directory : d:\UAC TRY-1\base
+Total : 27 files,  -4709 codes, 420 comments, -634 blanks, all -4923 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| HTML     |          2 |        589 |          2 |         96 |        687 |
+| Python   |          9 |        441 |        527 |        109 |      1,077 |
+| CSS      |         16 |     -5,739 |       -109 |       -839 |     -6,687 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                               | files      | code       | comment    | blank      | total      |
++----------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                  |         27 |     -4,709 |        420 |       -634 |     -4,923 |
+| ..                                                 |         16 |     -5,739 |       -109 |       -839 |     -6,687 |
+| ..\static                                          |         16 |     -5,739 |       -109 |       -839 |     -6,687 |
+| ..\static\uac                                      |         16 |     -5,739 |       -109 |       -839 |     -6,687 |
+| ..\static\uac\styles                               |         16 |     -5,739 |       -109 |       -839 |     -6,687 |
+| templates                                          |          2 |        589 |          2 |         96 |        687 |
+| templatetags                                       |          1 |         14 |          0 |          5 |         19 |
++----------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                           | language | code       | comment    | blank      | total      |
++----------------------------------------------------+----------+------------+------------+------------+------------+
+| d:\UAC TRY-1\base\__init__.py                      | Python   |          0 |          0 |          1 |          1 |
+| d:\UAC TRY-1\base\admin.py                         | Python   |          8 |          1 |          1 |         10 |
+| d:\UAC TRY-1\base\apps.py                          | Python   |          5 |          0 |          3 |          8 |
+| d:\UAC TRY-1\base\forms.py                         | Python   |         42 |          0 |          8 |         50 |
+| d:\UAC TRY-1\base\models.py                        | Python   |        123 |          1 |         33 |        157 |
+| d:\UAC TRY-1\base\templates\reserve.html           | HTML     |        347 |          1 |         44 |        392 |
+| d:\UAC TRY-1\base\templates\result1.html           | HTML     |        242 |          1 |         52 |        295 |
+| d:\UAC TRY-1\base\templatetags\customfilter.py     | Python   |         14 |          0 |          5 |         19 |
+| d:\UAC TRY-1\base\tests.py                         | Python   |          1 |          1 |          2 |          4 |
+| d:\UAC TRY-1\base\urls.py                          | Python   |         32 |          0 |         11 |         43 |
+| d:\UAC TRY-1\base\views.py                         | Python   |        216 |        524 |         45 |        785 |
+| d:\UAC TRY-1\static\uac\styles\404.css             | CSS      |        -60 |          0 |         -5 |        -65 |
+| d:\UAC TRY-1\static\uac\styles\about.css           | CSS      |       -479 |         -4 |        -76 |       -559 |
+| d:\UAC TRY-1\static\uac\styles\base.css            | CSS      |       -174 |         -2 |        -38 |       -214 |
+| d:\UAC TRY-1\static\uac\styles\goods.css           | CSS      |       -279 |         -2 |        -54 |       -335 |
+| d:\UAC TRY-1\static\uac\styles\home.css            | CSS      |       -635 |         -5 |        -81 |       -721 |
+| d:\UAC TRY-1\static\uac\styles\more.css            | CSS      |       -569 |        -10 |        -73 |       -652 |
+| d:\UAC TRY-1\static\uac\styles\payment_success.css | CSS      |       -654 |          0 |        -19 |       -673 |
+| d:\UAC TRY-1\static\uac\styles\reserve.css         | CSS      |       -190 |         -2 |        -42 |       -234 |
+| d:\UAC TRY-1\static\uac\styles\result1.css         | CSS      |       -699 |        -63 |        -86 |       -848 |
+| d:\UAC TRY-1\static\uac\styles\select.css          | CSS      |       -371 |         -2 |        -71 |       -444 |
+| d:\UAC TRY-1\static\uac\styles\ships.css           | CSS      |       -486 |         -8 |        -68 |       -562 |
+| d:\UAC TRY-1\static\uac\styles\success.css         | CSS      |       -294 |         -2 |        -63 |       -359 |
+| d:\UAC TRY-1\static\uac\styles\test1.css           | CSS      |       -257 |         -2 |        -58 |       -317 |
+| d:\UAC TRY-1\static\uac\styles\tickets.css         | CSS      |       -252 |         -2 |        -51 |       -305 |
+| d:\UAC TRY-1\static\uac\styles\transport.css       | CSS      |          0 |          0 |         -1 |         -1 |
+| d:\UAC TRY-1\static\uac\styles\xwing.css           | CSS      |       -340 |         -5 |        -53 |       -398 |
+| Total                                              |          |     -4,709 |        420 |       -634 |     -4,923 |
++----------------------------------------------------+----------+------------+------------+------------+------------+

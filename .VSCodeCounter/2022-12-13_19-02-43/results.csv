@@ -1,0 +1,13 @@
+"filename", "language", "Python", "HTML", "comment", "blank", "total"
+"d:\UAC TRY-1\base\__init__.py", "Python", 0, 0, 0, 1, 1
+"d:\UAC TRY-1\base\admin.py", "Python", 8, 0, 1, 1, 10
+"d:\UAC TRY-1\base\apps.py", "Python", 5, 0, 0, 3, 8
+"d:\UAC TRY-1\base\forms.py", "Python", 42, 0, 0, 8, 50
+"d:\UAC TRY-1\base\models.py", "Python", 123, 0, 1, 33, 157
+"d:\UAC TRY-1\base\templates\reserve.html", "HTML", 0, 347, 1, 44, 392
+"d:\UAC TRY-1\base\templates\result1.html", "HTML", 0, 242, 1, 52, 295
+"d:\UAC TRY-1\base\templatetags\customfilter.py", "Python", 14, 0, 0, 5, 19
+"d:\UAC TRY-1\base\tests.py", "Python", 1, 0, 1, 2, 4
+"d:\UAC TRY-1\base\urls.py", "Python", 32, 0, 0, 11, 43
+"d:\UAC TRY-1\base\views.py", "Python", 216, 0, 524, 45, 785
+"Total", "-", 441, 589, 529, 205, 1764
